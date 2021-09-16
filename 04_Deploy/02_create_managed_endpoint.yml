@@ -1,0 +1,21 @@
+$schema: https://azuremlschemas.azureedge.net/latest/managedOnlineEndpoint.schema.json
+name: simpsons-demo
+type: online
+auth_mode: key
+traffic:
+  v01: 100
+deployments:
+  - name: v01    
+    app_insights_enabled: true
+    model: azureml:SimpsonsPyTorchV4:1
+    code_configuration:
+      code: 
+        local_path: ../scripts/score
+      scoring_script: score.py
+    environment: azureml:simpsonsv4:2
+    instance_type: Standard_F4s_v2
+    scale_settings:
+      scale_type: Manual
+      instance_count: 1
+      min_instances: 1
+      max_instances: 1

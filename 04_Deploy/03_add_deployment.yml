@@ -1,0 +1,15 @@
+$schema: https://azuremlschemas.azureedge.net/latest/managedOnlineDeployment.schema.json
+name: v02
+model: azureml:SimpsonsPyTorchDemo:2
+app_insights_enabled: true
+code_configuration:
+  code: 
+    local_path: ../scripts/score
+  scoring_script: score.py
+environment: azureml:simpsonsv4:2
+instance_type: Standard_F4s_v2
+scale_settings:
+  scale_type: Manual
+  instance_count: 1
+  min_instances: 1
+  max_instances: 2

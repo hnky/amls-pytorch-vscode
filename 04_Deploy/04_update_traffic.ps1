@@ -1,0 +1,1 @@
+az ml endpoint update --name simpsons5 --traffic "v01:50,v02:50"

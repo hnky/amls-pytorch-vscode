@@ -1,0 +1,9 @@
+$schema: https://azuremlschemas.azureedge.net/latest/workspace.schema.json
+name: amls-pytorch-vscode
+
+location: WestEurope
+friendly_name: Henk's demo machine learning space
+description: A workspace for testing enterprise readiness features
+tags:
+  purpose: testing
+  team: ws-management

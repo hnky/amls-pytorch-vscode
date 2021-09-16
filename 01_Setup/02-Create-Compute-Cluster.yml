@@ -1,0 +1,6 @@
+$schema: https://azuremlschemas.azureedge.net/latest/compute.schema.json
+name: demo-compute
+type: amlcompute
+size: Standard_NC6
+max_instances: 1
+min_instances: 1
