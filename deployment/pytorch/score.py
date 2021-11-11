@@ -12,8 +12,8 @@ import datetime
 
 def init():
     global model
-    model_path = os.path.join(os.getenv('AZUREML_MODEL_DIR'),'outputs','model.pth')
-    labels_path = os.path.join(os.getenv('AZUREML_MODEL_DIR'),'outputs', 'labels.txt')
+    model_path = os.path.join(os.getenv('AZUREML_MODEL_DIR'),'simpsons-classification-pytorch','model.pth')
+    labels_path = os.path.join(os.getenv('AZUREML_MODEL_DIR'),'simpsons-classification-pytorch', 'labels.txt')
     
     print('Loading model...', end='')
     model = torch.load(model_path, map_location=lambda storage, loc: storage)

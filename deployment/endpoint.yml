@@ -1,0 +1,3 @@
+$schema: https://azuremlschemas.azureedge.net/latest/managedOnlineEndpoint.schema.json
+name: simpsons-classification-me
+auth_mode: key

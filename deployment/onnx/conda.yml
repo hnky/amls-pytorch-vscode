@@ -1,0 +1,9 @@
+name: project_environment
+dependencies:
+- python=3.8
+- pip:
+  - azureml-defaults
+  - onnxruntime
+  - pillow
+channels:
+- conda-forge

@@ -1,0 +1,46 @@
+$schema: https://azuremlschemas.azureedge.net/latest/pipelineJob.schema.json
+type: pipeline
+
+compute: azureml:OptimusPrime
+settings:
+  datastore: azureml:workspaceblobstore
+
+inputs:
+  training_data:
+    dataset: azureml:LegoSimpsons-v3:3
+
+outputs:
+  final_pipeline_output:
+    mode: upload
+
+jobs:
+  train_model:
+    type: component
+    component: file:./components/train.yml
+    inputs:
+      training_data: ${{inputs.training_data}}
+    outputs:
+      train_output: 
+        mode: upload
+  register_pytorch:
+    type: component
+    component: file:./components/register.yml
+    inputs:
+      model_assets_path: ${{jobs.train_model.outputs.train_output}}
+      model_name: "simpsons-classification-pytorch"
+      model_file_name: "model.pth"
+  convert_to_onnx:
+    type: component
+    component: file:./components/convert_to_onnx.yml
+    inputs:
+      input_assets_path: ${{jobs.train_model.outputs.train_output}}
+    outputs:
+      output_assets_path: 
+        mode: upload
+  register_onnx:
+    type: component
+    component: file:./components/register.yml
+    inputs:
+      model_assets_path: ${{jobs.convert_to_onnx.outputs.output_assets_path}}
+      model_name: "simpsons-classification-onnx"
+      model_file_name: "model.onnx"

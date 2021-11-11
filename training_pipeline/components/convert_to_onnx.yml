@@ -1,0 +1,21 @@
+$schema: https://azuremlschemas.azureedge.net/latest/commandComponent.schema.json
+type: command
+
+name: ConvertToOnnx
+display_name: Convert PyTorch Model to ONNX
+version: 1
+
+inputs:
+  input_assets_path:
+    type: path
+    
+outputs:
+  output_assets_path:
+    type: path
+
+code:
+  local_path: ./src
+
+environment: azureml:AzureML-pytorch-1.10-ubuntu18.04-py38-cuda11-gpu:2
+
+command: python onnx.py --input_assets_path ${{inputs.input_assets_path}} --output_assets_path ${{outputs.output_assets_path}}

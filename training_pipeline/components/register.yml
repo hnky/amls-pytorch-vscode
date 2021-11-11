@@ -1,0 +1,26 @@
+$schema: https://azuremlschemas.azureedge.net/latest/commandComponent.schema.json
+type: command
+
+name: Register model
+display_name: Register model after run
+version: 1
+
+inputs:
+  model_assets_path:
+    type: path
+  model_name:
+    type: string
+    default: "simpsons-classification"
+  model_file_name:
+    type: string
+    default: "model.pth"
+  label_file_name:
+    type: string
+    default: "labels.txt" 
+
+code:
+  local_path: ./src
+
+environment: azureml:AzureML-pytorch-1.10-ubuntu18.04-py38-cuda11-gpu:2
+
+command: python register.py --model_assets_path ${{inputs.model_assets_path}} --model_name ${{inputs.model_name}} --model_file_name ${{inputs.model_file_name}} --label_file_name ${{inputs.label_file_name}}

@@ -27,6 +27,7 @@ parser.add_argument("--num-epochs", type=int, dest="num_epochs", help="Number of
 #parser.add_argument("--model-name", type=str, dest="model_name", help="Name of the registered Model", default="")
 parser.add_argument('--learning_rate', type=float, default=0.001, help='learning rate')
 parser.add_argument('--momentum', type=float, default=0.9, help='momentum')
+parser.add_argument('--train_output', type=str, dest="train_output", help="Data output folder", default="")
 
 args = parser.parse_args()
 data_path = args.data_folder
@@ -34,6 +35,7 @@ num_epochs = args.num_epochs
 #model_name = args.model_name
 learning_rate = args.learning_rate
 momentum = args.momentum
+train_output = args.train_output
 
 ### Prepare the dataset
 data_transforms = {
@@ -147,11 +149,16 @@ model_ft = train_model(model_ft, criterion, optimizer_ft, exp_lr_scheduler, num_
 
 # Save the model
 torch.save(model_ft, './outputs/model.pth')
+torch.save(model_ft, os.path.join(train_output,'model.pth'))
+
 
 # Save the labels
 with open('./outputs/labels.txt', 'w') as f:
     f.writelines(["%s\n" % item  for item in class_names])
 
+# Save the labels
+with open(os.path.join(train_output,'labels.txt'), 'w') as f:
+    f.writelines(["%s\n" % item  for item in class_names])
 
 #run.upload_file(name='model/pytorch/labels.txt', path_or_stream="./outputs/labels.txt")
 #run.upload_file(name='model/pytorch/model.pth', path_or_stream="./outputs/model.pth")

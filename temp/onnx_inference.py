@@ -4,7 +4,13 @@ from PIL import Image
 import onnxruntime
 import time
 
-input_image = "Lisa.jpg"
+#from PIL import Image
+import requests
+from io import BytesIO
+
+
+
+input_image = "https://raw.githubusercontent.com/hnky/dataset-lego-figures/master/_test/Lisa.jpg"
 
 model_file = "model/model.onnx"
 model_labels = "model/labels.txt"
@@ -51,7 +57,12 @@ input_name = ort_session.get_inputs()[0].name
 
 labels = load_labels(model_labels)
 
-image = Image.open(input_image)
+
+response = requests.get(input_image)
+image = Image.open(BytesIO(response.content))
+
+
+#image = Image.open(input_image)
 input_data = preprocess(image)
 
 start = time.time()
