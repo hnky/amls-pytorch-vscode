@@ -10,6 +10,6 @@ dependencies:
   - azureml-defaults
   - torch
   - torchvision
-  - pillow==5.4.1
+  - pillow
 channels:
 - conda-forge

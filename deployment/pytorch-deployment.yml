@@ -1,5 +1,5 @@
 $schema: https://azuremlschemas.azureedge.net/latest/managedOnlineDeployment.schema.json
-name: pytorch
+name: pytorch1
 endpoint_name: simpsons-classification
 model: azureml:simpsons-classification-pytorch:3
 code_configuration:
