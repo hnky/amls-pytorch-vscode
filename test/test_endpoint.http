@@ -1,8 +1,8 @@
-POST https://simpsons-demo.westeurope.inference.ml.azure.com/score HTTP/1.1
+POST https://simpsons-classification.westeurope.inference.ml.azure.com/score HTTP/1.1
 content-type: application/json
-Authorization: Bearer iVXO2U5j2Lga3mo8UE1unPd29NFYw7uP
+Authorization: Bearer dQkoYY7Iw8j1Nobro1IZRQkRQRkReXmo
 
 {
-    "image": "https://raw.githubusercontent.com/hnky/dataset-lego-figures/master/_test/Homer.jpg"
+    "image": "https://raw.githubusercontent.com/hnky/dataset-lego-figures/master/_test/Bart.jpg"
 }
  
